@@ -1,0 +1,127 @@
+PROGRAMME chiffre Décimal à Romains
+
+VAR
+Saisie_util:ENTIER
+
+DEBUT
+Saisie_util←0
+
+REPETER
+	ECRIRE 'Veuillez saisir un entier à convertire en chiffre Romains. Il doit être compris entre 1 et 3999'
+	LIRE Saisie_util
+	SI ((Saisie_util<1) OU (Saisie_util>3999)) ALORS
+		ECRIRE 'Votre entier n est pas dans l ensemble de nombre que le programme peut traiter'
+	FIN SI 	
+JUSQU'A (Saisie_util>=1) ET (Saisie_util<=3999)
+
+TANT QUE (Saisie_util>0) FAIRE
+
+	SI (Saisie_util>=1000) ALORS
+		ECRIRE 'M'
+		Saisie_util← Saisie_util-1000
+	SINON SI (Saisie_util>=900) ALORS
+		ECRIRE 'CM'
+		Saisie_util← Saisie_util-900
+	SINON SI (Saisie_util>=500) ALORS
+		ECRIRE 'D'
+		Saisie_util← Saisie_util-500
+	SINON SI (Saisie_util>=400) ALORS
+		ECRIRE 'CD'
+		Saisie_util← Saisie_util-400
+	SINON SI (Saisie_util>=100) ALORS
+		ECRIRE 'C'
+		Saisie_util← Saisie_util-100
+	SINON SI (Saisie_util>=90) ALORS
+		ECRIRE 'XC'
+		Saisie_util← Saisie_util-90
+	SINON SI (Saisie_util>=50) ALORS
+		ECRIRE 'L'
+		Saisie_util← Saisie_util-50
+	SINON SI (Saisie_util>=40) ALORS
+		ECRIRE 'XL'
+		Saisie_util← Saisie_util-40
+	SINON SI (Saisie_util>=10) ALORS
+		ECRIRE 'X'
+		Saisie_util← Saisie_util-10
+	SINON SI (Saisie_util>=9) ALORS
+		ECRIRE 'IX'
+		Saisie_util← Saisie_util-9
+	SINON SI (Saisie_util>=5) ALORS
+		ECRIRE 'V'
+		Saisie_util← Saisie_util-5
+	SINON SI(Saisie_util>=4) ALORS
+		ECRIRE 'IV'
+		Saisie_util← Saisie_util-4
+	SINON SI (Saisie_util>=1) ALORS
+		ECRIRE 'I'
+		Saisie_util← Saisie_util-1
+	FINSI
+
+FINTANTQUE
+
+FIN.
+
+
+
+PROGRAMME chiffre Romains à Décimal 
+
+VAR
+cpt,result: ENTIER
+Tableau Saisie(100) DE CARACTERE
+
+DEBUT
+cpt←1
+resultat←0
+ 
+ECRIRE 'Vous avez choisie de nombre Romains a decimal'
+ECRIRE 'Rentrez un nombre Romains compris entre 1 et 3999 en majuscule'
+LIRE Saisie
+
+
+POUR (cpt<Longueur(Saisie)) FAIRE
+
+	SI (Saisie[cpt]='M') ALORS
+		resultat←resultat+1000
+	SINON SI (Saisie_util[cpt]='D') ALORS
+		resultat←resultat+500	
+	SINON SI (Saisie_util[cpt]='C') ALORS
+		SI (Saisie_util[cpt+1]='M') ALORS
+			resultat←resultat+900
+			cpt←cpt+1
+		SINON SI (Saisie_util[cpt+1]='D') ALORS
+			resultat←resultat+400
+			cpt←cpt+1	
+		SINON	
+			resultat←resultat+100
+		FINSI	
+	SINON SI (Saisie_util[cpt]='L') ALORS
+		resultat←resultat+50
+	SINON SI (Saisie_util[cpt]='X') ALORS
+		SI (Saisie_util[cpt+1]='C') ALORS
+			resultat←resultat+90
+			cpt←cpt+1
+		SINON SI (Saisie_util[cpt+1]='L') ALORS
+			resultat←resultat+40
+			cpt←cpt+1
+		SINON		
+			resultat←resultat+10
+		FINSI	
+	SINON SI (Saisie_util[cpt]='V') ALORS
+		resultat←resultat+5
+	SINON SI (Saisie_util[cpt]='I') ALORS
+		SI (Saisie_util[cpt+1]='X') ALORS
+			resultat←resultat+9
+			cpt←cpt+1
+		SINON SI (Saisie_util[cpt+1]='V') ALORS
+			resultat←resultat+4
+			cpt←cpt+1
+		SINON		
+			resultat←resultat+1
+		FINSI	
+	SINON
+		cpt←cpt+1
+	FINSI	
+
+FINTANTQUE
+ECRIRE resultat
+FIN.
